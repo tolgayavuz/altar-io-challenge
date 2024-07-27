@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as apiConfig from '../../assets/apiConfig.json';
+import * as apiConfig from '../../../assets/apiConfig.json';
 
 @Component({
   selector: 'app-bias-input',
@@ -14,7 +14,7 @@ export class BiasInputComponent {
 
   updateBias() {
     if (this.biasCharacter.match(/[a-z]/)) {
-      this.http.post(apiConfig.setBias.url, { bias: this.biasCharacter }).subscribe();
+      this.http.post(apiConfig.setBias.url, { bias: this.biasCharacter.toLowerCase() }).subscribe();
     }
   }
 }
