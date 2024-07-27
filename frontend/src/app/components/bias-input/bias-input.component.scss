@@ -16,5 +16,10 @@
         padding: 10px 10px;
 
         text-transform: lowercase;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     }
 }
