@@ -1,0 +1,28 @@
+.grid-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    table {
+        height: 100%;
+        border-collapse: collapse;
+        border-radius: 3px;
+        border-style: hidden; /* hide standard table (collapsed) border */
+        box-shadow: 0 0 0 1px #666; /* this draws the table border  */ 
+
+        tr {
+            td {
+                color: black;
+                text-align: center;
+                padding: 0;
+                margin: 0;
+                width: 45px;
+                height: 30px;
+                border: 1px solid black;
+            }
+        }
+    }
+}

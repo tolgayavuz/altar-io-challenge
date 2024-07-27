@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="header">
+    <app-bias-input></app-bias-input>
+    <div class="button-container">
+      <button class="button" (click)="startGenerator()">Generate 2D Grid</button>
+    </div>
+  </div>
+
+  <div class="components">
+    <app-grid [grid]="grid"></app-grid>
+    <div class="live {{ !live ? 'not-live' : '' }}"><span class="live-dot">•</span>LIVE</div>
+    <app-code-display [code]="code"></app-code-display>
+    <app-payments></app-payments>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "generateGrid": {
+    "url": "http://localhost:3000/api/generate-grid",
+    "method": "GET"
+  },
+  "getCode": {
+    "url": "http://localhost:3000/api/get-code",
+    "method": "GET"
+  },
+  "setBias": {
+    "url": "http://localhost:3000/api/set-bias",
+    "method": "POST"
+  }
+}
