@@ -34,9 +34,10 @@ export class AppComponent {
         this.live = true;
       },
         (error) => {
-          console.error('Error:' + error);
+          console.error('Error:' + error.message);
           this.live = false;
           this.subscription.unsubscribe();
-        });
+        }
+      );
   }
 }
