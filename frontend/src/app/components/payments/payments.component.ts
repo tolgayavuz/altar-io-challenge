@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Payment } from '../../models/payment.model';
+import { Service } from '../../services/service';
 
 @Component({
   selector: 'app-payments',
@@ -7,37 +9,19 @@ import { Component } from '@angular/core';
 })
 
 export class PaymentsComponent {
+  @Input() payments: Payment[] = [];
+  @Input() code = '';
+  @Input() grid: string[][] = [];
+  
   paymentNameInput = '';
   paymentAmountInput = 0;
+  
+  constructor(private service: Service) { }
 
-  payments = [
-    {
-      name: 'Tolga',
-      amount: 100,
-      code: '12',
-      grid: [
-        ['1', '2', '3'],
-        ['4', '5', '6'],
-        ['7', '8', '9']
-      ]
-    },
-    {
-      name: 'Yavuz',
-      amount: 200,
-      code: '34',
-      grid: [
-        ['1', '2', '3'],
-        ['4', '5', '6'],
-        ['7', '8', '9']
-      ]
-    }
-  ];
-
-  constructor() { }
-
-  addPayment() {
+  public addPayment() {
+    const newPayment = new Payment(this.paymentNameInput, this.paymentAmountInput, this.code, this.grid);
+    this.service.addPayment(newPayment).subscribe();
     this.paymentNameInput = '';
     this.paymentAmountInput = 0;
   }
-  
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { Service } from './services/service';
+import { Payment } from './models/payment.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { Service } from './services/service';
 export class AppComponent {
   title = 'Grid Generator App';
   grid: string[][] = [];
+  payments: Payment[] = [];
   code: string = '';
   live: boolean = false;
   subscription: Subscription = new Subscription;
@@ -27,10 +29,11 @@ export class AppComponent {
   startGenerator() {
     console.log('Starting generator');
     this.subscription = interval(2000)
-      .pipe(switchMap(() => this.service.getGridAndCode()))
-      .subscribe(({ grid, code }) => {
+      .pipe(switchMap(() => this.service.getDataInSync()))
+      .subscribe(({ grid, code, payments }) => {
         this.grid = grid;
         this.code = code;
+        this.payments = payments;
         this.live = true;
       },
         (error) => {
