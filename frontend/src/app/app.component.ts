@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { interval, Subscription, switchMap } from 'rxjs';
 import { Service } from './services/service';
 import { Payment } from './models/payment.model';
+import { WebSocketService } from './services/web-socket.service';
 
 @Component({
   selector: 'app-root',
@@ -16,31 +17,33 @@ export class AppComponent {
   live: boolean = false;
   subscription: Subscription = new Subscription;
 
-  constructor(private service: Service) { }
+  constructor(private webSocketService: WebSocketService) { }
 
   ngOnInit() {
     this.initializeGrid();
+    this.subscribeToWebSocket();
   }
 
   initializeGrid() {
     this.grid = Array(10).fill(null).map(() => Array(10).fill('*'));
   }
 
+  private subscribeToWebSocket() {
+    this.subscription.add(this.webSocketService.getMessages().subscribe((data: any) => {
+      if (data) {
+        this.grid = data.grid;
+        this.code = data.code;
+        this.payments = data.payments;
+        this.live = true;
+      }
+    }, (error) => {
+      console.error('Error:' + error.message);
+      this.live = false;
+    }));
+  }
+
   startGenerator() {
     console.log('Starting generator');
-    this.subscription = interval(2000)
-      .pipe(switchMap(() => this.service.getDataInSync()))
-      .subscribe(({ grid, code, payments }) => {
-        this.grid = grid;
-        this.code = code;
-        this.payments = payments;
-        this.live = true;
-      },
-        (error) => {
-          console.error('Error:' + error.message);
-          this.live = false;
-          this.subscription.unsubscribe();
-        }
-      );
+    this.webSocketService.sendMessage('startGenerator');
   }
 }
