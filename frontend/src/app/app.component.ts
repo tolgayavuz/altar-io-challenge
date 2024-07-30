@@ -33,7 +33,7 @@ export class AppComponent {
       if (data) {
         this.grid = data.grid;
         this.code = data.code;
-        this.payments = data.payments;
+        this.payments = data.payments.map((payment: any) => new Payment(payment.name, payment.amount, payment.code, payment.grid))
         this.live = true;
       }
     }, (error) => {
