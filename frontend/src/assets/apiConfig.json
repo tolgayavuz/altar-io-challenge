@@ -10,5 +10,13 @@
   "setBias": {
     "url": "http://localhost:3000/api/set-bias",
     "method": "POST"
+  },
+  "addPayment": {
+    "url": "http://localhost:3000/api/add-payment",
+    "method": "POST"
+  },
+  "getPayments": {
+    "url": "http://localhost:3000/api/get-payments",
+    "method": "GET"
   }
 }

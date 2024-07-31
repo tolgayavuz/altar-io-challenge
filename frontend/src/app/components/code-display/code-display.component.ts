@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 })
 export class CodeDisplayComponent implements OnInit {
   @Input() code: string = '';
-  private codeSubscription!: Subscription;
 
   constructor() { }
 

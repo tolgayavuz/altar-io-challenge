@@ -1,8 +1,11 @@
+import Database from "../database";
+
 let currentBias: string = '';
 let grid: string[][] = [];
 
 /* biasCount: 20 as default */
 const biasCount = 20;
+const db = new Database();
 
 const shuffleArray = function (array: string[]) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -74,3 +77,5 @@ const normalizeCount = (count: number): number => {
   }
   return count;
 };
+
+export const getDatabase = () => db;

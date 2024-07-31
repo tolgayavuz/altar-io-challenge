@@ -10,6 +10,6 @@
     <app-grid [grid]="grid"></app-grid>
     <div class="live {{ !live ? 'not-live' : '' }}"><span class="live-dot">•</span>LIVE</div>
     <app-code-display [code]="code"></app-code-display>
-    <app-payments></app-payments>
+    <app-payments *ngIf="live" [grid]="grid" [payments]="payments" [code]="code"></app-payments>
   </div>
 </div>
