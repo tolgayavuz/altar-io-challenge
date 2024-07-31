@@ -1,10 +1,8 @@
 import { Router } from 'express';
-import { generateGrid, generateCode, setBias } from '../services/apiService';
+import { generateGrid, generateCode, setBias, getDatabase } from '../services/apiService';
 import { Payment } from '../database/model/Payment';
-import Database from '../database/index';
 
 const router = Router();
-const db = new Database();
 
 router.get('/generate-grid', (req, res) => {
   const grid = generateGrid();
@@ -32,7 +30,7 @@ router.post('/add-payment', (req, res) => {
     const { data } = req.body;
     const paymentData = JSON.parse(data);
     const payment = new Payment(paymentData.name, paymentData.amount, paymentData.code, paymentData.grid);
-    db.addPayment(payment);
+    getDatabase().addPayment(payment);
     res.json({ success: true });
   } catch (error) {
     console.error(error);
@@ -41,7 +39,7 @@ router.post('/add-payment', (req, res) => {
 });
 
 router.get('/get-payments', (req, res) => {
-  const payments = db.getPayments();
+  const payments = getDatabase().getPayments();
   res.json(payments);
 });
 
