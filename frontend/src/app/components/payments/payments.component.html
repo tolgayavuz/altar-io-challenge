@@ -1,0 +1,41 @@
+<div class="payments-container">
+    <div class="header">
+        <div class="payment-name-input">
+            <span>Payment</span>
+            <input type="text" placeholder="Payment" [(ngModel)]="paymentNameInput">
+        </div>
+
+        <div class="payment-amount-input">
+            <span>Amount</span>
+            <input type="number" placeholder="Amount" [(ngModel)]="paymentAmountInput">
+        </div>
+
+        <div class="button-container">
+            <button class="button" (click)="addPayment()">
+                <span class="plus">+</span> ADD
+            </button>
+        </div>
+    </div>
+
+    <h4>PAYMENT LIST</h4>
+    <table cellpadding="0" class="payments-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Code</th>
+                <th>Grid</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="payments.length > 0">
+                <tr *ngFor="let payment of payments">
+                    <td>{{ payment.name }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.code }}</td>
+                    <td>{{ payment.size }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

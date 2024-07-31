@@ -1,0 +1,8 @@
+{
+    "name": "altar-io-challenge",
+    "version": "1.0.0",
+    "scripts": {
+        "bd": "cd backend && npm run dev",
+        "fd": "cd frontend && npm start"
+    }
+}
